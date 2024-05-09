@@ -27,6 +27,7 @@ export default function Contacts() {
         obj.email = formData.get('email')
 
         await ContactAPI.saveContact(obj)
+        setSelectedContactId(null)
         refetch()
     }
 
