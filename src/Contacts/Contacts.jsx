@@ -1,7 +1,7 @@
 import ContactAPI from './ContactApiAzure'
 import {useState} from "react";
 import {Button, Form, FormControl, Table} from 'react-bootstrap';
-import {Check, X, PencilFill} from 'react-bootstrap-icons';
+import {Check, X, PencilFill, Trash3Fill} from 'react-bootstrap-icons';
 import {useQuery} from "@tanstack/react-query";
 
 export default function Contacts() {
@@ -27,6 +27,13 @@ export default function Contacts() {
         obj.email = formData.get('email')
 
         await ContactAPI.saveContact(obj)
+        setSelectedContactId(null)
+        refetch()
+    }
+
+    async function deleteFn(contactId) {
+
+        await ContactAPI.deleteContact(contactId)
         setSelectedContactId(null)
         refetch()
     }
@@ -69,10 +76,17 @@ export default function Contacts() {
                                 <td>{contact.firstName}</td>
                                 <td>{contact.lastName}</td>
                                 <td>{contact.email}</td>
-                                <td><Button onClick={(e) => {
+                                <td>
+                                    <Button onClick={(e) => {
                                     e.preventDefault();
                                     setSelectedContactId(contact.id)
-                                }}><PencilFill color="white" size={12}/></Button></td>
+                                }}><PencilFill color="white" size={12}/></Button>
+                                    &nbsp;
+                                    <Button variant="danger" onClick={(e) => {
+                                    e.preventDefault();
+                                    deleteFn(contact.id)
+                                }}><Trash3Fill color="white" size={12}/></Button>
+                                </td>
                             </tr>
                     )
                 )}
