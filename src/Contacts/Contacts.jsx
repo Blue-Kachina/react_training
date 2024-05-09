@@ -1,12 +1,23 @@
 import ContactAPI from './ContactApiAzure'
-import {use, useState} from "react";
+import {useState} from "react";
 import {Button, FormControl, Table} from 'react-bootstrap';
 import {Check, X, PencilFill} from 'react-bootstrap-icons';
+import {useQuery} from "@tanstack/react-query";
 
 export default function Contacts() {
 
-    const contacts = use(ContactAPI.getAllContacts())
-    const [selectedContactId, setSelectedContactId] = useState("feea961f-e206-4198-a07f-2668a76a5c2b")
+  const { data: contacts } = useQuery({
+    queryKey: 'contacts',
+    queryFn: ContactAPI.getAllContacts,
+    options: {
+      cacheTime: 10000,
+      staleTime: 30000,
+      refetchOnWindowFocus: true,
+    },
+  });
+
+
+    const [selectedContactId, setSelectedContactId] = useState(null)
 
     return <>
         <h1>Contacts</h1>
