@@ -1,5 +1,5 @@
 import ContactAPI from './ContactApiAzure'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Button, Form, FormControl, Table} from 'react-bootstrap';
 import {Check, X, PencilFill, Trash3Fill} from 'react-bootstrap-icons';
 import {useQuery} from "@tanstack/react-query";
@@ -16,8 +16,14 @@ export default function Contacts() {
     },
   });
 
-
     const [selectedContactId, setSelectedContactId] = useState(null)
+
+    useEffect(() => {
+        ContactAPI.registerNotification(refetch)
+        return () => {
+            ContactAPI.unregisterNotification()
+        }
+    }, [])
 
     async function saveFn(formData) {
         const obj = {}
