@@ -1,7 +1,7 @@
 import ContactAPI from './ContactApiAzure'
 import {use, useState} from "react";
 import {Button, FormControl, Table} from 'react-bootstrap';
-import {Check, X, Pencil} from 'react-bootstrap-icons';
+import {Check, X, PencilFill} from 'react-bootstrap-icons';
 
 export default function Contacts() {
 
@@ -28,15 +28,18 @@ export default function Contacts() {
                                 <td><FormControl defaultValue={contact.firstName}/></td>
                                 <td><FormControl defaultValue={contact.lastName}/></td>
                                 <td><FormControl defaultValue={contact.email}/></td>
-                                <td><Button><Check color="white" size={16}/></Button></td>
-                                <td><Button><X color="white" size={16}/></Button></td>
+                                <td><Button><Check color="white" size={12}/></Button></td>
+                                <td><Button><X color="white" size={12}/></Button></td>
                             </tr>
                             :
                             <tr key={contact.id}>
                                 <td>{contact.firstName}</td>
                                 <td>{contact.lastName}</td>
                                 <td>{contact.email}</td>
-                                <td><Button><Pencil color="white" size={16}/></Button></td>
+                                <td><Button onClick={(e) => {
+                                    e.preventDefault();
+                                    setSelectedContactId(contact.id)
+                                }}><PencilFill color="white" size={12}/></Button></td>
                             </tr>
                     )
                 )}
