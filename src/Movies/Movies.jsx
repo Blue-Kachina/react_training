@@ -31,7 +31,6 @@ const options = {
 export default function Movies() {
     const cachedGenres = cache(getGenres);
     const genres = use(cachedGenres());
-    console.log(cachedGenres);
     const [selectedGenre, setSelectedGenre] = useState(0);
     let movies = [];
     if (selectedGenre) {
