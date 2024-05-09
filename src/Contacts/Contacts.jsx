@@ -28,8 +28,11 @@ export default function Contacts() {
                                 <td><FormControl defaultValue={contact.firstName}/></td>
                                 <td><FormControl defaultValue={contact.lastName}/></td>
                                 <td><FormControl defaultValue={contact.email}/></td>
-                                <td><Button><Check color="white" size={12}/></Button></td>
-                                <td><Button><X color="white" size={12}/></Button></td>
+                                <td>
+                                    <Button><Check color="white" size={12}/></Button>
+                                    &nbsp;
+                                    <Button><X color="white" size={12}/></Button>
+                                </td>
                             </tr>
                             :
                             <tr key={contact.id}>
