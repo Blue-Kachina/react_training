@@ -1,17 +1,17 @@
 import ContactAPI from './ContactApiAzure'
-import {use} from "react";
-import {Table} from 'react-bootstrap';
+import {use, useState} from "react";
+import {FormControl, Table} from 'react-bootstrap';
 
 export default function Contacts() {
 
     const contacts = use(ContactAPI.getAllContacts())
+    const [selectedContactId, setSelectedContactId] = useState(null)
 
     return <>
         <h1>Contacts</h1>
         <Table striped hover>
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -20,12 +20,20 @@ export default function Contacts() {
 
             <tbody>
                 {contacts.map((contact) =>
-                    <tr key={contact.id}>
-                        <td>{contact.id}</td>
-                        <td>{contact.firstName}</td>
-                        <td>{contact.lastName}</td>
-                        <td>{contact.email}</td>
-                    </tr>
+                    (
+                        selectedContactId === contact.id ?
+                            <tr key={contact.id}>
+                                <td><FormControl defaultValue={contact.firstName}/></td>
+                                <td><FormControl defaultValue={contact.lastName}/></td>
+                                <td><FormControl defaultValue={contact.email}/></td>
+                            </tr>
+                            :
+                            <tr key={contact.id}>
+                                <td>{contact.firstName}</td>
+                                <td>{contact.lastName}</td>
+                                <td>{contact.email}</td>
+                            </tr>
+                    )
                 )}
             </tbody>
         </Table>
