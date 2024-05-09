@@ -6,14 +6,9 @@ let count = 0
 export default  function MyButton() {
     let [count,setCount] = useState(0)
 
-    const render = useRender();
+    if(count > 10) {
+        throw new Error('Number too large.')
+    }
 
     return <Button onClick={() => (setCount(count + 1))}>The count is: {count}</Button>
-}
-
-function useRender() {
-    const [set] = useState()
-    function render() {
-        set({})
-    }
 }
