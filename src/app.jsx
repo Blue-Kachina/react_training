@@ -7,6 +7,7 @@ import Menu from "./Menu.jsx";
 import {createBrowserRouter, Outlet, RouterProvider, useLocation} from "react-router-dom";
 import MyForm from "./Form/MyForm.jsx";
 import Movies from "./Movies/Movies.jsx";
+import Contacts from "./Contacts/Contacts.jsx";
 import {lazy, Suspense} from "react";
 import {ErrorBoundary} from "react-error-boundary";
 
@@ -53,6 +54,7 @@ let router = createBrowserRouter([
             {path: "/counter",  element: <Counter firstName="Mike" lastName="Smith"/>},
             {path: "/form",     element: <MyForm/>},
             {path: "/movies",   element: <Movies/>},
+            {path: "/contacts",   element: <Contacts/>},
             {                   element: <p>Page Cannot Be Found</p>},
         ]
     },
