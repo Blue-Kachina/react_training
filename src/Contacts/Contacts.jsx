@@ -62,12 +62,12 @@ export default function Contacts() {
                                 <td><FormControl defaultValue={contact.lastName} name='lastName'/></td>
                                 <td><FormControl defaultValue={contact.email} name='email'/></td>
                                 <td>
-                                    <Button type='submit'><Check color="white" size={12}/></Button>
+                                    <Button type='submit' size={'sm'}><Check color="white" size={12}/></Button>
                                     &nbsp;
                                     <Button onClick={(e) => {
                                         e.preventDefault();
                                         setSelectedContactId(null)
-                                    }}><X color="white" size={12}/></Button>
+                                    }} size={'sm'}><X color="white" size={12}/></Button>
                                 </td>
 
                             </tr>
@@ -80,12 +80,12 @@ export default function Contacts() {
                                     <Button onClick={(e) => {
                                     e.preventDefault();
                                     setSelectedContactId(contact.id)
-                                }}><PencilFill color="white" size={12}/></Button>
+                                }} size={'sm'}><PencilFill color="white" size={12}/></Button>
                                     &nbsp;
                                     <Button variant="danger" onClick={(e) => {
                                     e.preventDefault();
                                     deleteFn(contact.id)
-                                }}><Trash3Fill color="white" size={12}/></Button>
+                                }} size={'sm'}><Trash3Fill color="white" size={12}/></Button>
                                 </td>
                             </tr>
                     )
